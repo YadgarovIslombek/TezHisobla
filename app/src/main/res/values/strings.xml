@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">TezHisobla</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="qoida_n">O\'yin qoidasi O\'yinda 3 xil shakl bor: 2tasi pastda 1si yuqorida.
+        Shakllardan 2 sida sonlar beriladi. Sizning vazifangiz pastdaki 2 ta shakldagi sonlar yuqoridagi songa teng
+        bo\'lishini ta\'minlash uchun berilgan variantlardan birini tanlash.\n\n
+        <b>Masalan:</b> Tepadagi shakldan 7 soni joylashgan pastagi  shakldan 4 soni joylashgan, variyantlar orasidan
+        4 ga qaysi sonni qo\'shsa javob 7 bo\'ladigan sonni tanlashingiz zarur. 3+4=7</string>
+    <string name="choose_level">Boshqichni tanlang:</string>
+    <string name="test_level_txt">Test</string>
+    <string name="easy_level_txt">Oson</string>
+    <string name="level_normal_txt">O\'rta</string>
+    <string name="level_hard_txt">Qiyin</string>
+    <string name="game_over">GAME OVER</string>
 </resources>
