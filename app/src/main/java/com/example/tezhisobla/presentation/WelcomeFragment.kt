@@ -20,22 +20,22 @@ private const val ARG_PARAM2 = "param2"
  */
 class WelcomeFragment : Fragment() {
 
-    private  var _binding: FragmentWelcomeBinding? = null
-    private val binding :FragmentWelcomeBinding
-        get() = _binding?:throw RuntimeException("binding not init")
+    private var _binding: FragmentWelcomeBinding? = null
+    private val binding: FragmentWelcomeBinding
+        get() = _binding ?: throw RuntimeException("binding not init")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding =  FragmentWelcomeBinding.inflate(inflater, container, false)
+        _binding = FragmentWelcomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(binding){
+        with(binding) {
             btnUnderstand.setOnClickListener {
                 launchChooseLevelFragment()
             }
@@ -43,10 +43,10 @@ class WelcomeFragment : Fragment() {
     }
 
 
-
-    fun launchChooseLevelFragment(){
+    fun launchChooseLevelFragment() {
         requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.container_view,ChooseLevelFragment.newInstance()).commit()
+            .replace(R.id.container_view, ChooseLevelFragment.newInstance()).addToBackStack(ChooseLevelFragment.LEVEL_NAME)
+            .commit()
     }
 
 

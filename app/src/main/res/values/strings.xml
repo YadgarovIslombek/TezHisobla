@@ -13,4 +13,9 @@
     <string name="level_normal_txt">O\'rta</string>
     <string name="level_hard_txt">Qiyin</string>
     <string name="game_over">GAME OVER</string>
+    <string name="to_gri_javoblar_foizda_s_minumum_s">To\'gri javoblar foizda: %s</string>
+    <string name="required_score">Zarur bo\'lgan ball: %s</string>
+    <string name="score_answer">Yig\'ilgan ball: %s</string>
+    <string name="required_percent">Zarur bo\'lgan to\'g\'ri javoblar foizi: %s</string>
+    <string name="progress_answer">To\'gri javoblar %s (minimum %s)</string>
 </resources>
