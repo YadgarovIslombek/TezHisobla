@@ -8,22 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.tezhisobla.R
 import com.example.tezhisobla.databinding.FragmentGameBinding
 import com.example.tezhisobla.domain.entity.GameResult
-import com.example.tezhisobla.domain.entity.GameSetting
 import com.example.tezhisobla.domain.entity.Level
 
 class GameFragment : Fragment() {
     private lateinit var level: Level
-    private val gameViewModel: GameViewModel by lazy {
-        ViewModelProvider(
-            this, ViewModelProvider.AndroidViewModelFactory(
-                requireActivity().application
-            )
-        )[GameViewModel::class.java]
+
+    private val gameViewModel:GameViewModel by lazy {
+        ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application))[GameViewModel::class.java]
     }
 
     private var _binding: FragmentGameBinding? = null
@@ -66,7 +61,7 @@ class GameFragment : Fragment() {
     private fun chooseAnswer() {
         for (tt in tvVariants) {
             tt.setOnClickListener {
-                gameViewModel.chooseUserAnswer(tt.text.toString().toInt())
+                gameViewModel.chooseAnswer(tt.text.toString().toInt())
 
             }
         }
@@ -85,7 +80,7 @@ class GameFragment : Fragment() {
         gameViewModel.percentRightOfAnswer.observe(viewLifecycleOwner){
             binding.progressBar.setProgress(it,true)
         }
-        gameViewModel.enoughRightOfAnswer.observe(viewLifecycleOwner){
+        gameViewModel.enoughCountRightOfAnswer.observe(viewLifecycleOwner){
             val colorResId = if (it){
                 android.R.color.holo_green_light
             }else{
@@ -106,8 +101,8 @@ class GameFragment : Fragment() {
             val color  = ContextCompat.getColor(requireContext(),colorResId)
             binding.progressBar.progressTintList = ColorStateList.valueOf(color)
         }
-        gameViewModel.formatted.observe(viewLifecycleOwner){
-            binding.txtTimer.setText(it)
+        gameViewModel.formattedTime.observe(viewLifecycleOwner){
+            binding.txtTimer.text = it
         }
         gameViewModel.minPercent.observe(viewLifecycleOwner){
             binding.progressBar.secondaryProgress = it
