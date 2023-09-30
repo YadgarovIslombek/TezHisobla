@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.tezhisobla.R
 import com.example.tezhisobla.databinding.FragmentWelcomeBinding
 
@@ -41,15 +42,9 @@ class WelcomeFragment : Fragment() {
             }
         }
     }
-
-
     fun launchChooseLevelFragment() {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.container_view, ChooseLevelFragment.newInstance()).addToBackStack(ChooseLevelFragment.LEVEL_NAME)
-            .commit()
+        findNavController().navigate(R.id.action_welcomeFragment_to_chooseLevelFragment)
     }
-
-
     companion object {
         /**
          * Use this factory method to create a new instance of

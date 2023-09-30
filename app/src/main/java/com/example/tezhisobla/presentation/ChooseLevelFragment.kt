@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.tezhisobla.R
 import com.example.tezhisobla.databinding.FragmentChooseLevelBinding
 import com.example.tezhisobla.databinding.FragmentWelcomeBinding
@@ -45,9 +46,7 @@ class ChooseLevelFragment : Fragment() {
     }
 
     private fun launchGameFragment(level: Level){
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.container_view,GameFragment.newInstance(level)).
-            addToBackStack(GameFragment.GAME_NAME).commit()
+        findNavController().navigate(ChooseLevelFragmentDirections.actionChooseLevelFragmentToGameFragment(level))
     }
 
 

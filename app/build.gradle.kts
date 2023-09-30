@@ -2,17 +2,17 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
-    id("androidx.navigation.safeargs") version ("2.4.2")
+    id("androidx.navigation.safeargs") version ("2.7.3")
 }
 
 android {
     namespace = "com.example.tezhisobla"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.tezhisobla"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 

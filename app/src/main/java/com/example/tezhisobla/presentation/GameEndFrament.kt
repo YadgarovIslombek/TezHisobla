@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
 import com.example.tezhisobla.R
 import com.example.tezhisobla.databinding.FragmentGameEndFramentBinding
 import com.example.tezhisobla.domain.entity.GameResult
@@ -38,12 +39,7 @@ class GameEndFrament : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    retry()
-                }
-            })
+
         binding.buttonRetry.setOnClickListener {
             retry()
         }
@@ -51,10 +47,7 @@ class GameEndFrament : Fragment() {
     }
 
     private fun retry() {
-        requireActivity().supportFragmentManager.popBackStack(
-            GAME_NAME,
-            FragmentManager.POP_BACK_STACK_INCLUSIVE
-        )
+        findNavController().popBackStack()
     }
 
     private fun bindView() {
@@ -93,7 +86,7 @@ class GameEndFrament : Fragment() {
     }
 
     companion object {
-        private const val KEY_RESULT = "result"
+         const val KEY_RESULT = "result"
 
         @JvmStatic
         fun newInstance(gameResult: GameResult) =

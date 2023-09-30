@@ -9,14 +9,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.tezhisobla.R
 import com.example.tezhisobla.databinding.FragmentGameBinding
 import com.example.tezhisobla.domain.entity.GameResult
 import com.example.tezhisobla.domain.entity.Level
 
 class GameFragment : Fragment() {
-    private lateinit var level: Level
 
+    private val args by navArgs<GameFragmentArgs>()
     private val gameViewModel:GameViewModel by lazy {
         ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application))[GameViewModel::class.java]
     }
@@ -36,10 +38,7 @@ class GameFragment : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        parseArgs()
-    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +53,7 @@ class GameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
         chooseAnswer()
-        gameViewModel.startGame(level)
+        gameViewModel.startGame(args.level)
 
     }
 
@@ -114,14 +113,13 @@ class GameFragment : Fragment() {
     }
 
     private fun launchGameEndFragment(gameResult: GameResult) {
-        requireActivity().supportFragmentManager.beginTransaction().replace(
-            R.id.container_view, GameEndFrament.newInstance(gameResult)
-        ).addToBackStack(null).commit()
+        val args = Bundle().apply {
+            putSerializable(GameEndFrament.KEY_RESULT,gameResult)
+        }
+       findNavController().navigate(R.id.action_gameFragment_to_gameEndFrament,args)
     }
 
-    private fun parseArgs() {
-        level = requireArguments().getSerializable(KEY_OBJ) as Level
-    }
+
 
     companion object {
         const val KEY_OBJ = "key"
